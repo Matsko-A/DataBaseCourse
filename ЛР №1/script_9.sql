@@ -11,4 +11,4 @@ select
 		"ActualCost" 
 from "Production"."TransactionHistory"
 where "Quantity" > 4
-order by "ActualCost"  desc;
+order by "ActualCost" asc;
