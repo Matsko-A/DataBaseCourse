@@ -5,6 +5,6 @@ select
 		"ProductLine", 
 		avg("ListPrice") as "ListPrice"
 from "Production"."Product"
-where "ProductLine" is not null
+where "ProductLine" is not null and "ListPrice" > 0
 group by "ProductLine"
 having avg("ListPrice") > '800';

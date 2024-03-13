@@ -5,5 +5,6 @@ select
 		"DepartmentID",
 		"ShiftID", 
 		count ("BusinessEntityID") as "BusinessEntityID"
+		grouping("DepartmentID") as "DepartmentIDGroup"
 from "HumanResources"."EmployeeDepartmentHistory"
 group by grouping sets (("DepartmentID"), ("ShiftID"));
