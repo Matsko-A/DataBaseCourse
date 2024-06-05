@@ -1,12 +1,10 @@
 -- Находит Дела по содержанию
-create or replace function GetCasesByInvestigatorName(investigatorFirstName varchar, investigatorLastName varchar)
-returns table("CaseID" int, "CaseNumber" int, "Description" varchar) as $$
+create or replace function GetCasesByContent(contentKeyword varchar)
+returns table("CaseID" int, "CaseNumber" varchar, "Description" varchar) as $$
 begin
     return query
-    select c."CaseID", c."CaseNumber", c."Description"
-  	from "Investigator" inv
-    join "InvestigatorCase" ic on inv."InvestigatorID" = ic."InvestigatorID"
-    join "Case" c on ic."CaseID" = c."CaseID"
-    where inv."FirstName" = investigatorFirstName and inv."LastName" = investigatorLastName;
+    select "CaseID", "CaseNumber", "Description"
+    from "Case"
+    where "Description" like '%' || contentKeyword || '%';
 end;
-$$ language plpgsql;
+$$ language  plpgsql;
